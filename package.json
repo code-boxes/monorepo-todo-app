@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250725.0",
+    "drizzle-kit": "^0.31.4",
+    "prettier": "^3.1.1",
+    "turbo": "^2.5.5",
+    "wrangler": "^4.26.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "name": "with-react-native-web",
+  "packageManager": "bun@1.2.14",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "dependencies": {
+    "@types/minimatch": "^6.0.0",
+    "drizzle-orm": "^0.44.3"
+  }
+}
