@@ -1,9 +1,23 @@
-import { Hono } from 'hono'
+import { drizzle } from "drizzle-orm/d1";
+import { Hono } from "hono";
+import { users } from "@db/schema";
 
-const app = new Hono()
+export type Bindings = {
+  DB: D1Database;
+  API_KEY: string;
+};
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+const app = new Hono<{ Bindings: Bindings }>();
 
-export default app
+app.get("/", (c) => {
+  const db = drizzle(c.env.DB, {
+    schema: {
+      users,
+      // ここにスキーマを定義する
+    },
+  });
+
+  return c.text("Hello Hono!");
+});
+
+export default app;
